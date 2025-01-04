@@ -1,10 +1,12 @@
 /* styles.css */
 
 :root {
-    background-color: #ffffff;
+    --bg-color: #ffffff;
     --text-color: #000000;
     --button-bg: #007bff;
     --button-text: #ffffff;
+    --hover-bg: #0056b3;
+    --transition-speed: 0.3s;
 }
 
 body {
@@ -16,16 +18,19 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    overflow: hidden;
 }
 
 .container {
     text-align: center;
+    animation: fadeIn 1s ease-out;
 }
 
 .clock {
     font-size: 3rem;
     margin: 20px 0;
+    animation: fadeIn 2s ease-out;
 }
 
 button {
@@ -37,10 +42,17 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--hover-bg);
+    transform: scale(1.1);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
 .dark-theme {
@@ -48,4 +60,15 @@ button:hover {
     --text-color: #ffffff;
     --button-bg: #6c757d;
     --button-text: #000000;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
